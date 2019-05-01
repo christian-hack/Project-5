@@ -6,10 +6,15 @@ import java.util.Scanner;
 public class HammDist {
 	
 	private ArrayList<String> stations = new ArrayList<String>();
-	private ArrayList<String> hDStations = new ArrayList<String>();
+	private ArrayList<String> hd1Stations = new ArrayList<String>();
+	private ArrayList<String> hd2Stations = new ArrayList<String>();
+	private ArrayList<String> hd3Stations = new ArrayList<String>();
+	private ArrayList<String> hd4Stations = new ArrayList<String>();
 	File file = new File("Mesonet.txt");
 	
-	public HammDist() {
+	public HammDist() throws IOException 
+	{
+		read();
 		
 	}
 	
@@ -63,7 +68,7 @@ public class HammDist {
 		
 	}
 	
-	public ArrayList<String> getMatchingStations(String st, int hd) 
+	public void getMatchingStations(String st) 
 	{
 		int HD = 0;
 		int iOfStation = stations.indexOf(st);
@@ -74,14 +79,25 @@ public class HammDist {
 			if (i != iOfStation) 
 			{
 				HD = computeHammingDist(st, stations.get(i));
-				if (HD == hd) 
+				if (HD == 1) 
 				{
-					match.add(stations.get(i));
+					hd1Stations.add(stations.get(i));
+				}
+				if (HD == 2)
+				{
+					hd2Stations.add(stations.get(i));
+				}
+				if (HD == 3)
+				{
+					hd3Stations.add(stations.get(i));
+				}
+				if (HD == 4)
+				{
+					hd4Stations.add(stations.get(i));
 				}
 			}
 			
 		}
-		return match;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class HammDist {
 	
 	private ArrayList<String> stations = new ArrayList<String>();
+	private ArrayList<String> hd0Stations = new ArrayList<String>();
 	private ArrayList<String> hd1Stations = new ArrayList<String>();
 	private ArrayList<String> hd2Stations = new ArrayList<String>();
 	private ArrayList<String> hd3Stations = new ArrayList<String>();
@@ -35,9 +36,9 @@ public class HammDist {
 		bw.close();
 	}
 	
-	public void addStation(String station2Add) 
+	public void addStation(String stationToAdd) 
 	{
-		stations.add(station2Add);
+		stations.add(stationToAdd);
 	}
 	
 	public int computeHammingDist(String stationOne, String stationTwo) 
@@ -72,13 +73,16 @@ public class HammDist {
 	{
 		int HD = 0;
 		int iOfStation = stations.indexOf(st);
-		ArrayList<String> match = new ArrayList<String>();
 		
 		for (int i = 0; i < stations.size(); ++i) 
 		{
 			if (i != iOfStation) 
 			{
 				HD = computeHammingDist(st, stations.get(i));
+				if (HD == 0) 
+				{
+					hd0Stations.add(stations.get(i));
+				}
 				if (HD == 1) 
 				{
 					hd1Stations.add(stations.get(i));
